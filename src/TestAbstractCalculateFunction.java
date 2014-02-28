@@ -14,78 +14,64 @@
  *  				e. Function5: f(x) = cos(x) + 5sin(x)
  *  				f. Function6: f(x) = 5cos(x) + sin(x)
  *  				g. Function7: f(x) = log(x) + x^2
- *  
- *  			And the executing result is:
- *  				Function1: f(x) = x^2
- *					x = 5.00
- *					f(x) = 25.00
- *					============================
- *					Function2: f(x) = sin(x)
- *					x = 1.57
- *					f(x) = 1.00
- *					============================
- *					Function3: f(x) = cos(x)
- *					x = 0.00
- *					f(x) = 1.00
- *					============================
- *					Function4: f(x) = tan(x)
- *					x = 6.28
- *					f(x) = -0.00
- *					============================
- *					Function5: f(x) = cos(x) + 5sin(x)
- *					x = 4.71
- *					f(x) = -5.00
- *					============================
- *					Function6: f(x) = 5cos(x) + sin(x)
- *					x = 3.14
- *					f(x) = -5.00
- *					============================
- *					Function7: f(x) = log(x) + x^2
- *					x = 10.00
- *					f(x) = 101.00 
  */
+import java.util.Scanner;
 public class TestAbstractCalculateFunction {
 	/** Main method */
 	public static void main(String[] args) {
-		/** Test Function1 class */
+		Scanner input = new Scanner(System.in);
+		
 		Function1 function1 = new Function1();
-		function1.setX(5); // x = 5
-		System.out.println(function1.toString());
-		System.out.println("============================");
-		
-		/** Test Function2 class */
 		Function2 function2 = new Function2();
-		function2.setX(Math.PI / 2); // x = PI / 2
-		System.out.println(function2.toString());
-		System.out.println("============================");
-		
-		/** Test Function3 class */
 		Function3 function3 = new Function3();
-		function3.setX(0); // x = 0
-		System.out.println(function3.toString());
-		System.out.println("============================");
-		
-		/** Test Function4 class */
 		Function4 function4 = new Function4();
-		function4.setX(Math.PI * 2); // x = PI * 2
-		System.out.println(function4.toString());
-		System.out.println("============================");
-		
-		/** Test Function5 class */
 		Function5 function5 = new Function5();
-		function5.setX(Math.PI * 1.5); // x = PI * 1.5
-		System.out.println(function5.toString());
-		System.out.println("============================");
-		
-		/** Test Function6 class */
 		Function6 function6 = new Function6();
-		function6.setX(Math.PI); // x = PI
-		System.out.println(function6.toString());
-		System.out.println("============================");
-		
-		/** Test Function7 class */
 		Function7 function7 = new Function7();
-		function7.setX(10); // x = 10
-		System.out.println(function7.toString());	
+		
+		AbstractCalculateFunction[] functions = new AbstractCalculateFunction[7];
+		functions[0] = function1;
+		functions[1] = function2;
+		functions[2] = function3;
+		functions[3] = function4;
+		functions[4] = function5;
+		functions[5] = function6;
+		functions[6] = function7;
+		
+		System.out.println("This is a program that calculates several functions.");
+		System.out.println("The Functions are respectively:");
+		
+		for(AbstractCalculateFunction function: functions)
+			System.out.println(function);
+		
+		System.out.println("===================================================");
+		
+		int toContinue = 1;
+		double x;
+		int f;
+		
+		while (toContinue == 1) {
+			System.out.print("Enter the value of x: ");
+			x = input.nextDouble();
+			System.out.print("Choose a function: (Enter number 1 to 7): ");
+			f = input.nextInt();
+		
+			switch(f) {
+				case 1: System.out.printf("f(x) = %.2f\n", function1.f(x)); break;
+				case 2: System.out.printf("f(x) = %.2f\n", function2.f(x)); break;
+				case 3: System.out.printf("f(x) = %.2f\n", function3.f(x)); break;
+				case 4: System.out.printf("f(x) = %.2f\n", function4.f(x)); break;
+				case 5: System.out.printf("f(x) = %.2f\n", function5.f(x)); break;
+				case 6: System.out.printf("f(x) = %.2f\n", function6.f(x)); break;
+				case 7: System.out.printf("f(x) = %.2f\n", function7.f(x)); break;
+				default: System.out.println("Invalid Input.");
+			}
+			
+			System.out.print("Again? (Enter 1 to calculate functions again and others to exit): ");
+			toContinue = input.nextInt();
+		}
+
+		
+
 	}
 }
