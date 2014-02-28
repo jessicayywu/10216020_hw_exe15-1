@@ -2,7 +2,8 @@
  *  ID: U10216020
  *  Ex.: 15.1
  *  Information:
- *  			A program that calculates the answers of functions using abstract methods
+ *  			A program that prompts the user to enter the value of x and pick one of the 7 functions,
+ *  			and calculates the answers of functions using abstract methods
  *  
  *  			In the program, an abstract class AbstractCalculateFunction and 7 subclasses
  *  			of it are tested.
@@ -29,7 +30,10 @@ public class TestAbstractCalculateFunction {
 		Function6 function6 = new Function6();
 		Function7 function7 = new Function7();
 		
+		// Create a 7-element AbstractCalculateFunction array
 		AbstractCalculateFunction[] functions = new AbstractCalculateFunction[7];
+		
+		// Initialize the array with function1~7
 		functions[0] = function1;
 		functions[1] = function2;
 		functions[2] = function3;
@@ -38,24 +42,27 @@ public class TestAbstractCalculateFunction {
 		functions[5] = function6;
 		functions[6] = function7;
 		
+		// Simply explain the program
 		System.out.println("This is a program that calculates several functions.");
 		System.out.println("The Functions are respectively:");
 		
+		// Display the details of the functions
 		for(AbstractCalculateFunction function: functions)
-			System.out.println(function);
+			System.out.println(function); // Invokes toString method
 		
 		System.out.println("===================================================");
 		
-		int toContinue = 1;
-		double x;
-		int f;
+		int toContinue = 1; // To continue or not (1: to continue, others: not to continue)
+		double x; // The value of x
+		int f; // Which function? (e.g. f = 1 stands for the Function1.)
 		
 		while (toContinue == 1) {
-			System.out.print("Enter the value of x: ");
+			System.out.print("Enter the value of x: "); // Prompt the user to enter the value of x
 			x = input.nextDouble();
-			System.out.print("Choose a function: (Enter number 1 to 7): ");
+			System.out.print("Choose a function: (Enter number 1 to 7): "); // Prompt the user to choose a function
 			f = input.nextInt();
-		
+			
+			// Display the answer
 			switch(f) {
 				case 1: System.out.printf("f(x) = %.2f\n", function1.f(x)); break;
 				case 2: System.out.printf("f(x) = %.2f\n", function2.f(x)); break;
@@ -64,14 +71,14 @@ public class TestAbstractCalculateFunction {
 				case 5: System.out.printf("f(x) = %.2f\n", function5.f(x)); break;
 				case 6: System.out.printf("f(x) = %.2f\n", function6.f(x)); break;
 				case 7: System.out.printf("f(x) = %.2f\n", function7.f(x)); break;
-				default: System.out.println("Invalid Input.");
+				default: System.out.println("Invalid Input."); // If the function chosen does not exist
 			}
 			
+			// Ask the user whether or not to calculate another x or another function
 			System.out.print("Again? (Enter 1 to calculate functions again and others to exit): ");
 			toContinue = input.nextInt();
 		}
 
-		
-
+		input.close(); // Close the input
 	}
 }
